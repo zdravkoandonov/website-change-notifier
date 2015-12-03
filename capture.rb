@@ -1,4 +1,5 @@
 require 'screencap'
+require 'net/http'
 
 def capture(url)
   puts "starting..."
@@ -8,4 +9,12 @@ def capture(url)
   puts "saving..."
 end
 
-capture("http://fmi.ruby.bg")
+#capture("http://fmi.ruby.bg")
+
+def dl(url)
+  now = Time.now
+  response = Net::HTTP.get_response(URI(url))
+  File.write("dl#{now.strftime('%Y%m%d%H%M%S%L')}", response.body)
+end
+
+dl("http://www.credoweb.bg/robots.txt")
