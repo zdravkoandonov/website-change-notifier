@@ -1,0 +1,1 @@
+0 * * * * cd /root/change-notifier/ && /usr/local/bin/ruby /root/website-change-notifier/change-notifier.rb 1> /dev/null 2> /root/cronerr.err
