@@ -14,7 +14,7 @@ end
 def dl(url)
   now = Time.now
   response = Net::HTTP.get_response(URI(url))
-  File.write("dl#{now.strftime('%Y%m%d%H%M%S%L')}", response.body)
+  File.write("dl#{url.gsub(/http:|\/|\\|\./, '')}#{now.strftime('%Y%m%d%H%M%S%L')}", response.body)
 end
 
 dl("http://www.credoweb.bg/robots.txt")
