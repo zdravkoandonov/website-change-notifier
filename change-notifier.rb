@@ -4,14 +4,14 @@ require 'net/smtp'
 class ChangeNotifier
   attr_reader :last_change_line
 
-  def initialize(*urls)
-    @urls = urls
+  def initialize(*settings)
+    @settings = settings
   end
 
   def update_all
-    @urls.each do |url|
+    @settings.each do |url, start_line|
       dl(url)
-      last_change_line = diff_last_two_txts(url)
+      last_change_line = diff_last_two_txts(url, start_line)
       p last_change_line
       if last_change_line
         send_email(url, last_change_line + 1)
@@ -26,13 +26,13 @@ class ChangeNotifier
     File.write("#{url.gsub(/http:|\/|\\|\./, '')}#{now.strftime('%Y%m%d%H%M%S%L')}", response.body)
   end
 
-  def diff_last_two_txts(url)
+  def diff_last_two_txts(url, start_line = 0)
     latest_files = Dir["*"].select { |file_name| file_name.start_with?(url.gsub(/http:|\/|\\|\./, '')) }.sort
     if latest_files.size >= 2
       old_file = File.open(latest_files[-2], 'r')
       new_file = File.open(latest_files[-1], 'r')
       zipped = new_file.each_line.zip(old_file.each_line)
-      zipped.find_index { |new_line, old_line| new_line != old_line }
+      zipped[start_line..-1].find_index { |new_line, old_line| new_line != old_line }
     end
   end
 
@@ -57,5 +57,5 @@ MESSAGE_END
   end
 end
 
-urls_to_track = ["http://www.credoweb.bg/robots.txt", "http://fmi.ruby.bg/"]
+urls_to_track = [["http://www.credoweb.bg/robots.txt", 0], ["http://fmi.ruby.bg/", 11]]
 ChangeNotifier.new(*urls_to_track).update_all
