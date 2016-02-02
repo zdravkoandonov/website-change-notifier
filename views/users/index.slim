@@ -1,3 +1,8 @@
 h1 Users
 
 a href="/" Home
+
+p = @users.size
+
+- @users.each do |user|
+	p #{user.email} - #{user.username} - #{user.password}

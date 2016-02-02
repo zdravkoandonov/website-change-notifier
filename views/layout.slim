@@ -4,4 +4,10 @@ html
     title Website Change Notifier
 
   body
-  	== yield
+    header
+      - if session[:user_id]
+        p Welcome, #{session[:user_name]}
+        p
+          a href='/logout/' Logout
+
+    == yield
