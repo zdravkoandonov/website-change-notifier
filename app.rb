@@ -1,7 +1,7 @@
-require 'require_all'
+require 'bundler'
+Bundler.require
 
-require 'sinatra'
-require 'rack/rewrite'
+require './config/environment'
 
 use Rack::Rewrite do
   r301 %r{^(.*[^/])$},  '$1/'
