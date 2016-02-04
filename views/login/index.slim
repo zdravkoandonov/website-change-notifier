@@ -1,9 +1,18 @@
-form action="/login/" method="POST"
+- if @user
+  - @user.errors.full_messages.each do |message|
+    p #{message}
+
+form action="/login" method="POST"
   p
     span Username:
-    input type="text" name="username" autofocus="autofocus"
+    input type="text" name="username" autofocus="autofocus" value="#{@user ? @user.username : ''}"
   p
     span Password:
     input type="password" name="password"
 
   input type="submit" value="Login"
+
+p
+  a href="/register" Register
+p
+  a href="/" Home

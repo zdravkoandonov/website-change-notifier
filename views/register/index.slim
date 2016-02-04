@@ -1,12 +1,21 @@
-form action="/register/" method="POST"
+- if @user
+  - @user.errors.full_messages.each do |message|
+    p #{message}
+
+form action="/register" method="POST"
   p
     span Email:
-    input type="text" name="email" autofocus="autofocus"
+    input type="text" name="email" autofocus="autofocus" value="#{@user ? @user.email : ''}"
   p
     span Username:
-    input type="text" name="username"
+    input type="text" name="username" value="#{@user ? @user.username : ''}"
 	p
     span Password:
     input type="password" name="password"
 
   input type="submit" value="Register"
+
+p
+  a href="/login" Login
+p
+  a href="/" Home

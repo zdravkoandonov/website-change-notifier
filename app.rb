@@ -7,7 +7,7 @@ require './config/environment'
 enable :sessions
 
 use Rack::Rewrite do
-  r301 %r{^(.*[^/])$},  '$1/'
+  r301 %r{^(.+)/$},  '$1'
 end
 
 require_all 'models'

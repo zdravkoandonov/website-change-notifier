@@ -1,14 +1,17 @@
-get '/login/' do
+get '/login' do
+  redirect to('/') if session[:user_id]
+
   slim :'login/index'
 end
 
-post '/login/' do
-  user = User.find_by(username: params[:username], password: params[:password])
-  if user
-    session[:user_id] = user.id
-    session[:user_name] = user.username
+post '/login' do
+  @user = User.find_by(username: params[:username])
+
+  if @user and @user.password == params[:password]
+    session[:user_id] = @user.id
+    session[:user_name] = @user.username
     redirect to('/')
   else
-    redirect to('/login/')
+    slim :'login/index'
   end
 end

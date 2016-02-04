@@ -1,0 +1,18 @@
+h1 New task
+
+- if @task
+  - @task.errors.full_messages.each do |message|
+    p #{message}
+
+form action="/tasks/new" method="POST"
+  p
+    span Url:
+    input type="text" name="url" autofocus="autofocus"
+  p
+    span Frequency(in minutes):
+    input type="text" name="frequency"
+
+  input type="submit" value="Add this task"
+
+p
+  a href="/tasks" Go back to the list of all tasks
