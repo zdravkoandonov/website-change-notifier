@@ -1,15 +1,15 @@
 get '/login' do
-  redirect to('/') if session[:user_id]
+  redirect to('/') if authenticated?
 
   slim :'login/index'
 end
 
 post '/login' do
-  @user = User.find_by(username: params[:username])
+  redirect to('/') if authenticated?
 
-  if @user and @user.password == params[:password]
-    session[:user_id] = @user.id
-    session[:user_name] = @user.username
+  @user = login(params[:username], params[:password])
+
+  if @user
     redirect to('/')
   else
     slim :'login/index'

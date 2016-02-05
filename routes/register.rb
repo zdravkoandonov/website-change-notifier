@@ -1,18 +1,18 @@
 get '/register' do
-  redirect to('/') if session[:user_id]
+  redirect to('/') if authenticated?
 
   slim :'register/index'
 end
 
 post '/register' do
-  @user = User.create(
-    username: params[:username],
-    email: params[:email],
-    password: params[:password])
+  redirect to('/') if authenticated?
+
+  @user = register(
+    params[:username],
+    params[:email],
+    params[:password])
 
   if @user.valid?
-    session[:user_id] = @user.id
-    session[:user_name] = @user.username
     redirect to('/tasks')
   else
     slim :'register/index'

@@ -1,5 +1,5 @@
 get '/tasks' do
-  redirect to('/') if not session[:user_id]
+  authenticate
 
   @tasks = User.find(session[:user_id]).tasks
 
@@ -7,10 +7,14 @@ get '/tasks' do
 end
 
 get '/tasks/new' do
+  authenticate
+
   slim :'tasks/new'
 end
 
 post '/tasks/new' do
+  authenticate
+
   @task = User.find(session[:user_id]).tasks.create(
     url: params[:url],
     frequency: params[:frequency])
