@@ -1,20 +1,14 @@
-get '/tasks' do
-  authenticate
-
+get '/tasks', authenticate: true do
   @tasks = User.find(session[:user_id]).tasks
 
   slim :'tasks/index'
 end
 
-get '/tasks/new' do
-  authenticate
-
+get '/tasks/new', authenticate: true do
   slim :'tasks/new'
 end
 
-post '/tasks/new' do
-  authenticate
-
+post '/tasks/new', authenticate: true do
   page = Page.find_by(url: params[:url]) || Page.create(url: params[:url])
 
   @task = User.find(session[:user_id]).tasks.create(

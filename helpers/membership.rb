@@ -3,10 +3,6 @@ module Membership
     session.has_key?(:user_id)
   end
 
-  def authenticate
-    redirect to('/login') if not authenticated?
-  end
-
   def login(username, password)
     if not authenticated?
       user = User.find_by(username: params[:username])
