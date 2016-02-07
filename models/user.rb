@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  has_and_belongs_to_many :tasks
+  has_many :tasks
+  has_many :pages, through: :tasks
 
   validates :email, presence: true, uniqueness: {case_sensitive: false}
   validates :username, presence: true, uniqueness: {case_sensitive: false}, length: {in: 5..60}

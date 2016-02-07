@@ -5,13 +5,13 @@ class CreateUsers < ActiveRecord::Migration
     end
 
     create_table :tasks do |t|
-      t.string :url
+      t.belongs_to :user, index: true
+      t.belongs_to :page, index: true
       t.integer :frequency
     end
 
-    create_table :tasks_users, id: false do |t|
-      t.belongs_to :user, index: true
-      t.belongs_to :task, index: true
+    create_table :pages do |t|
+      t.string :url
     end
   end
 end

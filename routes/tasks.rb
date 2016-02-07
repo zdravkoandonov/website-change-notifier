@@ -15,9 +15,11 @@ end
 post '/tasks/new' do
   authenticate
 
+  page = Page.find_by(url: params[:url]) || Page.create(url: params[:url])
+
   @task = User.find(session[:user_id]).tasks.create(
-    url: params[:url],
-    frequency: params[:frequency])
+    frequency: params[:frequency],
+    page: page);
 
   if @task.valid?
     redirect to('/tasks')
