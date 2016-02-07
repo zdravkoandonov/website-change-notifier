@@ -7,3 +7,7 @@ namespace :db do
     ActiveRecord::Migrator.migrate('db/migrate')
   end
 end
+
+task :spec do
+  system 'rspec spec/login_spec.rb --color --format documentation'
+end
