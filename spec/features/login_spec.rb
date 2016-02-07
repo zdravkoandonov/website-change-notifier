@@ -1,4 +1,4 @@
-require_relative 'spec_helper'
+require_relative '../feature_helper'
 
 feature 'Signing in' do
   around(:each) do |example|

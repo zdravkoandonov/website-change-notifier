@@ -9,5 +9,5 @@ namespace :db do
 end
 
 task :spec do
-  system 'rspec spec/login_spec.rb --color --format documentation'
+  system 'rspec --color --format documentation'
 end
