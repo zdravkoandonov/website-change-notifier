@@ -23,10 +23,12 @@ feature 'Tasks' do
   let(:user) { User.find_by(username: 'pesho999') }
 
   scenario 'Lists url and frequency for already added tasks' do
+    name = 'Ruby FMI'
     url = 'http://fmi.ruby.bg'
     frequency = 30
 
     user.tasks.create(
+      name: name,
       frequency: frequency,
       page: Page.find_by(url: url) || Page.create(url: url))
 
@@ -37,11 +39,13 @@ feature 'Tasks' do
   end
 
   scenario 'Adds a task and lists its url and frequency' do
+    name = 'Ruby FMI'
     url = 'http://fmi.ruby.bg'
     frequency = 30
 
     visit '/tasks/new'
     fill_in 'url', with: url
+    fill_in 'name', with: name
     fill_in 'frequency', with: frequency
 
     click_button 'Add'
