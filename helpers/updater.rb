@@ -9,7 +9,13 @@ module Updater
 
     page.last_updated = now
     page.save
+
+    open('logs/downloads.log', 'a') do |f|
+      f.puts now.to_s + ' Downloaded ' + page.url
+    end
   rescue Exception => exception
-    # log exception
+    open('logs/downloads.log', 'a') do |f|
+      f.puts now.to_s + ' ' + exception.to_s
+    end
   end
 end
