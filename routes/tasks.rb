@@ -9,7 +9,13 @@ get '/tasks/new', authenticate: true do
 end
 
 post '/tasks/new', authenticate: true do
-  page = Page.find_by(url: params[:url]) || Page.create(url: params[:url])
+  url = params[:url]
+
+  if not url.start_with?('http://', 'https://')
+    url.prepend('http://')
+  end
+
+  page = Page.find_by(url: url) || Page.create(url: url)
 
   @task = User.find(session[:user_id]).tasks.create(
     frequency: params[:frequency],
@@ -20,4 +26,10 @@ post '/tasks/new', authenticate: true do
   else
     slim :'tasks/new'
   end
+end
+
+get '/tasks/update/:id' do
+  download_content(params[:id])
+
+  redirect to('/tasks')
 end

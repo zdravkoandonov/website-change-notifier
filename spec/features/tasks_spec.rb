@@ -23,7 +23,7 @@ feature 'Tasks' do
   let(:user) { User.find_by(username: 'pesho999') }
 
   scenario 'Lists url and frequency for already added tasks' do
-    url = 'fmi.ruby.bg'
+    url = 'http://fmi.ruby.bg'
     frequency = 30
 
     user.tasks.create(
@@ -37,7 +37,7 @@ feature 'Tasks' do
   end
 
   scenario 'Adds a task and lists its url and frequency' do
-    url = 'fmi.ruby.bg'
+    url = 'http://fmi.ruby.bg'
     frequency = 30
 
     visit '/tasks/new'

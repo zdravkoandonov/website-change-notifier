@@ -1,7 +1,9 @@
 h1 Tasks
 
 - @tasks.each do |task|
-  p #{task.page.url} - #{task.frequency}
+  p
+    | #{task.page.url} - #{task.frequency} - #{task.page.last_updated}
+    a href="/tasks/update/#{task.page.id}" Update now
 
 p
   a href="/tasks/new" Add new task

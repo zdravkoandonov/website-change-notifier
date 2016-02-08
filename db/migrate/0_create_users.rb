@@ -12,6 +12,7 @@ class CreateUsers < ActiveRecord::Migration
 
     create_table :pages do |t|
       t.string :url
+      t.datetime :last_updated
     end
   end
 end
