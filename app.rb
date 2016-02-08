@@ -11,7 +11,8 @@ use Rack::Rewrite do
 end
 
 require './helpers/membership'
-helpers Membership
+require './helpers/updater'
+helpers Membership, Updater
 
 require_all 'models'
 require_all 'routes'
