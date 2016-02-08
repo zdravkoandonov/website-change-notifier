@@ -1,6 +1,6 @@
 h1 Delete task
 
-p Are you sure that you want to delete #{@task.page.url}?
+p Are you sure that you want to delete #{@task.name}(#{@task.page.url})?
 
 form action="/tasks/delete/#{@task.id}" method="POST"
   input type="hidden" name="_method" value="delete"

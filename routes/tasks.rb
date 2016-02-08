@@ -18,6 +18,7 @@ post '/tasks/new', authenticate: true do
   page = Page.find_by(url: url) || Page.create(url: url)
 
   @task = User.find(session[:user_id]).tasks.create(
+    name: params[:name],
     frequency: params[:frequency],
     page: page);
 
@@ -43,6 +44,7 @@ end
 put '/tasks/edit/:id' do
   @task = Task.find(params[:id])
 
+  @task.name = params[:name]
   @task.frequency = params[:frequency]
   @task.save
 

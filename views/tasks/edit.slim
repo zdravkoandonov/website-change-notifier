@@ -9,6 +9,9 @@ form action="/tasks/edit/#{@task.id}" method="POST"
     span Url:
     input type="text" name="url" autofocus="autofocus" value="#{@task.page.url}" disabled="disabled"
   p
+    span Name:
+    input type="text" name="name" value="#{@task.name}"
+  p
     span Frequency(in minutes):
     input type="text" name="frequency" value="#{@task.frequency}"
 

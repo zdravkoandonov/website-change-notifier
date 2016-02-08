@@ -2,7 +2,7 @@ h1 Tasks
 
 - @tasks.each do |task|
   p
-    | #{task.page.url} - #{task.frequency} - #{task.page.last_updated}
+    | #{task.name} - #{task.page.url} - #{task.frequency} - #{task.page.last_updated}
     a href="/tasks/update/#{task.page.id}" Update now
     a href="/tasks/edit/#{task.page.id}" Edit
     a href="/tasks/delete/#{task.page.id}" Remove
