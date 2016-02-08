@@ -33,3 +33,34 @@ get '/tasks/update/:id' do
 
   redirect to('/tasks')
 end
+
+get '/tasks/edit/:id' do
+  @task = Task.find(params[:id])
+
+  slim :'tasks/edit'
+end
+
+put '/tasks/edit/:id' do
+  @task = Task.find(params[:id])
+
+  @task.frequency = params[:frequency]
+  @task.save
+
+  if @task.valid?
+    redirect to('/tasks')
+  else
+    slim :'tasks/edit'
+  end
+end
+
+get '/tasks/delete/:id' do
+  @task = Task.find(params[:id])
+
+  slim :'tasks/delete'
+end
+
+delete '/tasks/delete/:id' do
+  Task.find(params[:id]).destroy
+
+  redirect to('/tasks')
+end

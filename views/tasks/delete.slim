@@ -1,0 +1,11 @@
+h1 Delete task
+
+p Are you sure that you want to delete #{@task.page.url}?
+
+form action="/tasks/delete/#{@task.id}" method="POST"
+  input type="hidden" name="_method" value="delete"
+
+  input type="submit" value="Yes, delete this task"
+
+p
+  a href="/tasks" No, go back to the list of all tasks

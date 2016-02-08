@@ -10,6 +10,8 @@ use Rack::Rewrite do
   r301 %r{^(.+)/$},  '$1'
 end
 
+use Rack::MethodOverride
+
 require './helpers/membership'
 require './helpers/updater'
 helpers Membership, Updater

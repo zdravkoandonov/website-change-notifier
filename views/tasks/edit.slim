@@ -1,0 +1,20 @@
+h1 Edit task
+
+- if @task.errors
+  - @task.errors.full_messages.each do |message|
+    p #{message}
+
+form action="/tasks/edit/#{@task.id}" method="POST"
+  p
+    span Url:
+    input type="text" name="url" autofocus="autofocus" value="#{@task.page.url}" disabled="disabled"
+  p
+    span Frequency(in minutes):
+    input type="text" name="frequency" value="#{@task.frequency}"
+
+  input type="hidden" name="_method" value="put"
+
+  input type="submit" value="Save changes"
+
+p
+  a href="/tasks" Go back to the list of all tasks
