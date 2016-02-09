@@ -30,7 +30,7 @@ feature 'Tasks' do
     user.tasks.create(
       name: name,
       frequency: frequency,
-      page: Page.find_by(url: url) || Page.create(url: url))
+      page: Page.find_or_create_by(url: url))
 
     visit '/tasks'
 

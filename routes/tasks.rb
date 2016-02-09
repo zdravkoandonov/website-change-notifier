@@ -15,7 +15,7 @@ post '/tasks/new', authenticate: true do
     url.prepend('http://')
   end
 
-  page = Page.find_by(url: url) || Page.create(url: url)
+  page = Page.find_or_create_by(url: url)
 
   @task = User.find(session[:user_id]).tasks.create(
     name: params[:name],
