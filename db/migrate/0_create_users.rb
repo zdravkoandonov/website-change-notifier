@@ -9,11 +9,11 @@ class CreateUsers < ActiveRecord::Migration
       t.belongs_to :page, index: true
       t.string :name, :selector
       t.integer :frequency
+      t.datetime :last_updated
     end
 
     create_table :pages do |t|
       t.string :url
-      t.datetime :last_updated
     end
   end
 end

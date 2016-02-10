@@ -34,6 +34,8 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    concurrent-ruby (1.0.0)
+    connection_pool (2.2.0)
     diff-lcs (1.2.5)
     i18n (0.7.0)
     json (1.8.3)
@@ -49,6 +51,7 @@ GEM
     rack-rewrite (1.5.1)
     rack-test (0.6.3)
       rack (>= 1.0)
+    redis (3.2.2)
     require_all (1.3.3)
     rspec (3.4.0)
       rspec-core (~> 3.4.0)
@@ -63,6 +66,10 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.4.0)
     rspec-support (3.4.1)
+    sidekiq (4.1.0)
+      concurrent-ruby (~> 1.0)
+      connection_pool (~> 2.2, >= 2.2.0)
+      redis (~> 3.2, >= 3.2.1)
     slim (3.0.6)
       temple (~> 0.7.3)
       tilt (>= 1.3.3, < 2.1)
@@ -83,8 +90,10 @@ DEPENDENCIES
   bcrypt
   capybara
   rack-rewrite
+  redis
   require_all
   rspec
+  sidekiq
   sinatra!
   slim
   sqlite3

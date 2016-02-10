@@ -9,3 +9,5 @@ gem 'rack-rewrite', require: 'rack/rewrite'
 gem 'bcrypt'
 gem 'capybara', require: false
 gem 'rspec', require: false
+gem 'sidekiq'
+gem 'redis'

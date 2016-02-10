@@ -24,6 +24,8 @@ post '/tasks/new', authenticate: true do
     page: page);
 
   if @task.valid?
+    Downloader.perform_async(@task.id)
+
     redirect to('/tasks')
   else
     slim :'tasks/new'
