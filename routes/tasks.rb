@@ -32,19 +32,19 @@ post '/tasks/new', authenticate: true do
   end
 end
 
-get '/tasks/update/:id' do
-  download_content(params[:id])
+get '/tasks/update/:id', authenticate: true do
+  Downloader.perform_async(params[:id])
 
   redirect to('/tasks')
 end
 
-get '/tasks/edit/:id' do
+get '/tasks/edit/:id', authenticate: true do
   @task = Task.find(params[:id])
 
   slim :'tasks/edit'
 end
 
-put '/tasks/edit/:id' do
+put '/tasks/edit/:id', authenticate: true do
   @task = Task.find(params[:id])
 
   @task.name = params[:name]
@@ -59,13 +59,13 @@ put '/tasks/edit/:id' do
   end
 end
 
-get '/tasks/delete/:id' do
+get '/tasks/delete/:id', authenticate: true do
   @task = Task.find(params[:id])
 
   slim :'tasks/delete'
 end
 
-delete '/tasks/delete/:id' do
+delete '/tasks/delete/:id', authenticate: true do
   Task.find(params[:id]).destroy
 
   redirect to('/tasks')

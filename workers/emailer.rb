@@ -1,6 +1,5 @@
 class Emailer
   include Sidekiq::Worker
-  include Updater
 
   def perform(email, url, diff_line, original_download_time_string)
     message = DiffMessage.new(email, url, diff_line, original_download_time_string)

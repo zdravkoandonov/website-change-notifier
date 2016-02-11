@@ -1,6 +1,5 @@
 class Waker
   include Sidekiq::Worker
-  include Updater
 
   def perform
     now = Time.now
@@ -12,8 +11,7 @@ class Waker
       LogItem.new('sidekiq', "#{now} Checking #{task.inspect}").save
 
       if task.last_updated + task.frequency.minutes <= now
-        download_content(task.id)
-        Differ.perform_async(task.id)
+        Downloader.perform_async(task.id)
       end
     end
 

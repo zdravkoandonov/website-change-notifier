@@ -18,8 +18,8 @@ use Rack::MethodOverride
 
 require_all 'lib'
 
-require_all 'helpers'
-helpers Membership, Updater
+require './helpers/membership'
+helpers Membership
 
 require_all 'models'
 require_all 'routes'
