@@ -41,22 +41,4 @@ module Updater
       zipped.find_index { |new_line, old_line| new_line != old_line }
     end
   end
-
-  def send_email(email_address, url, diff_line, time_string)
-    message = <<MESSAGE
-From: zdravkoandonov.com notifier <notifier@zdravkoandonov.com>
-To: <#{email_address}>
-Subject: Change detected at #{url} - #{time_string}
-There is a change detected at the following url on line #{diff_line}: #{url}
-MESSAGE
-
-    Net::SMTP.start('mail.zdravkoandonov.com',
-                    26,
-                    'localhost',
-                    'notifier@zdravkoandonov.com',
-                    'asdf1234!@#$',
-                    :plain) do |smtp|
-      smtp.send_message message, 'notifier@zdravkoandonov.com', email_address
-    end
-  end
 end
