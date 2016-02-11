@@ -1,10 +1,10 @@
 require 'bundler'
 Bundler.require
 
+require './config/environment'
+
 require 'sidekiq/api'
 require 'net/smtp'
-
-require './config/environment'
 
 
 # TODO: use cookie secret to invalidate crafted cookies
