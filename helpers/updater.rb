@@ -10,20 +10,14 @@ module Updater
     task.last_updated = now
     task.save
 
-    open('/home/zdravkoandonov/Source/Repos/website-change-notifier/logs/downloads.log', 'a') do |f|
-      f.puts now.to_s + ' Downloaded ' + task.page.url
-    end
+    LogItem.new('downloads', "#{now} Downloaded #{task.page.url}").save
   rescue Exception => exception
-    open('/home/zdravkoandonov/Source/Repos/website-change-notifier/logs/downloads.log', 'a') do |f|
-      f.puts now.to_s + ' ' + exception.to_s
-    end
+    LogItem.new('downloads', "#{now} #{exception}").save
   end
 
   def diff_index_of_last_two_txts(task_id, css_selector = 'html')
     downloaded_files = Dir['download/*'].select do |file_name|
-      open('/home/zdravkoandonov/Source/Repos/website-change-notifier/logs/diff.log', 'a') do |f|
-        f.puts file_name
-      end
+      LogItem.new('diff', file_name).save
       file_name.start_with?('download/' + task_id.to_s + '-')
     end
 
@@ -35,11 +29,7 @@ module Updater
 
       zipped = new_file.zip(old_file)
 
-      open('/home/zdravkoandonov/Source/Repos/website-change-notifier/logs/diff.log', 'a') do |f|
-        f.puts 'Diff files: ' + zipped.inspect
-        f.puts old_file
-        f.puts new_file
-      end
+      LogItem.new('diff', "Diff files: #{zipped.inspect}\n#{old_file}\n#{new_file}").save
 
       zipped.find_index { |new_item, old_item| new_item.to_s != old_item.to_s }
     end

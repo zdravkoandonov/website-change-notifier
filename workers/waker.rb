@@ -5,16 +5,11 @@ class Waker
   def perform
     now = Time.now
 
-    open('/home/zdravkoandonov/Source/Repos/website-change-notifier/logs/sidekiq.log', 'a') do |f|
-      f.puts now.to_s + ' Started waker'
-    end
+    LogItem.new('sidekiq', "#{now} Started waker").save
 
     # TODO: use in-SQL filtering
     Task.find_each(batch_size: 2000) do |task|
-
-      open('/home/zdravkoandonov/Source/Repos/website-change-notifier/logs/sidekiq.log', 'a') do |f|
-        f.puts now.to_s + ' Checked ' + task.inspect
-      end
+      LogItem.new('sidekiq', "#{now} Checking #{task.inspect}").save
 
       if task.last_updated + task.frequency.minutes <= now
         download_content(task.id)
