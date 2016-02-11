@@ -11,3 +11,4 @@ gem 'capybara', require: false
 gem 'rspec', require: false
 gem 'sidekiq'
 gem 'redis'
+gem 'nokogiri'

@@ -89,6 +89,7 @@ DEPENDENCIES
   activerecord
   bcrypt
   capybara
+  nokogiri
   rack-rewrite
   redis
   require_all
