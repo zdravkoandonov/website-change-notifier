@@ -12,3 +12,4 @@ gem 'rspec', require: false
 gem 'sidekiq'
 gem 'redis'
 gem 'nokogiri'
+gem 'slack-notifier'

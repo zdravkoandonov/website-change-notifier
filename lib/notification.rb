@@ -28,6 +28,10 @@ class Notification
   end
 
   def send_slack
-
+    notifier = Slack::Notifier.new(
+      'https://hooks.slack.com/services/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',
+      username: 'change-notifier',
+      channel: '#default')
+    notifier.ping(@message)
   end
 end
