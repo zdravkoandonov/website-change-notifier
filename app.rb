@@ -16,6 +16,8 @@ end
 
 use Rack::MethodOverride
 
+require_all 'lib'
+
 require_all 'helpers'
 helpers Membership, Updater
 
