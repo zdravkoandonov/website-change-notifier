@@ -1,12 +1,13 @@
 class DiffMessage
-  def initialize(url, time_string, email_address = nil)
+  def initialize(url, time_string, platform, email_address = nil)
+    @platform = platform
     @email_address = email_address
     @url = url
     @time_string = time_string
   end
 
   def to_s
-    if @email_address
+    if @platform == :email
       email_message
     else
       simple_message

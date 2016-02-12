@@ -1,7 +1,7 @@
 class Differ
   include Sidekiq::Worker
 
-  def perform(task_id)
+  def perform(task_id, original_download_time_string)
     task = Task.find(task_id)
 
     diff_line = diff_index_of_last_two_files(task_id, task.selector)
@@ -10,7 +10,7 @@ class Differ
 
     if diff_line
       LogItem.new('diff', "#{Time.now} There were some differences. Sending notification").save
-      Emailer.perform_async(task.user.email, task.page.url, Time.now.to_s)
+      Notifier.perform_async(task.id, original_download_time_string)
     else
       LogItem.new('diff', "#{Time.now} No differences - not sending notification").save
     end

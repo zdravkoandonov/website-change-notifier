@@ -1,0 +1,25 @@
+h1 Settings
+
+- if @user.errors
+  - @user.errors.full_messages.each do |message|
+    p #{message}
+
+form action="/settings" method="POST"
+  p
+    span Platform:
+    select name="platform"
+      - @platforms.each do |platform|
+        <option value="#{platform.id}"
+          - if platform == @user.platform
+            | selected="selected"
+          |>
+          = platform.name
+        </option>
+  p
+    span Slack webhook url(if you are using slack):
+    input type="text" name="slack_url" value="#{@user.slack_url}"
+  p
+    span Slack bot name(if you are using slack):
+    input type="text" name="slack_bot_name" value="#{@user.slack_bot_name}"
+
+  input type="submit" value="Save changes"

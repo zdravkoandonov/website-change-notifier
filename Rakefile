@@ -4,6 +4,7 @@ namespace :db do
     require 'bundler'
     Bundler.require
     require './config/environment'
+    require_all 'models'
     ActiveRecord::Migrator.migrate('db/migrate')
   end
 end

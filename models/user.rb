@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  belongs_to :platform
   has_many :tasks
   has_many :pages, through: :tasks
 

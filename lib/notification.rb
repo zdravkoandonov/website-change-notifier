@@ -28,10 +28,16 @@ class Notification
   end
 
   def send_slack
+    webhook_url = @settings[:webhook_url]
+    bot_name = @settings[:bot_name]
+    bot_name = 'change-notifier' if bot_name == ''
+
+    LogItem.new('slack', webhook_url).save
+    LogItem.new('slack', bot_name).save
+
     notifier = Slack::Notifier.new(
-      'https://hooks.slack.com/services/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',
-      username: 'change-notifier',
-      channel: '#default')
+      webhook_url,
+      username: bot_name)
     notifier.ping(@message)
   end
 end

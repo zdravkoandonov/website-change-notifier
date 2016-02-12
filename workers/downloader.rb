@@ -7,7 +7,7 @@ class Downloader
     LogItem.new('sidekiq', "#{now} Started downloading task with id: #{task_id}").save
 
     download_content(task_id)
-    Differ.perform_async(task_id)
+    Differ.perform_async(task_id, now.to_s)
   end
 
   private

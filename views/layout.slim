@@ -8,6 +8,10 @@ html
       - if session[:user_id]
         p Welcome, #{session[:user_name]}
         p
-          a href='/logout/' Logout
+          a href='/tasks' Tasks
+          | &nbsp;|&nbsp;
+          a href='/settings' Settings
+          | &nbsp;|&nbsp;
+          a href='/logout' Logout
 
     == yield
