@@ -15,11 +15,11 @@ post '/tasks/new', authenticate: true do
 
   page = Page.find_or_create_by(url: url)
 
-  @task = User.find(session[:user_id]).tasks.create(
-    name: params[:name],
-    selector: params[:selector],
-    frequency: params[:frequency],
-    page: page)
+  @task = User.find(session[:user_id]).tasks.
+    create(name: params[:name],
+           selector: params[:selector],
+           frequency: params[:frequency],
+           page: page)
 
   if @task.valid?
     Downloader.perform_async(@task.id)

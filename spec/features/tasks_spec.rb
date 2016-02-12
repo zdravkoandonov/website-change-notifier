@@ -3,10 +3,9 @@ require_relative '../feature_helper'
 feature 'Tasks' do
   around(:each) do |example|
     ActiveRecord::Base.connection.transaction do
-      User.create(
-        username: 'pesho999',
-        email: 'pesho999@pesho999.com',
-        password: '1234567')
+      User.create(username: 'pesho999',
+                  email: 'pesho999@pesho999.com',
+                  password: '1234567')
 
       visit '/login'
       fill_in 'username', with: 'pesho999'
@@ -27,10 +26,9 @@ feature 'Tasks' do
     url = 'http://fmi.ruby.bg'
     frequency = 30
 
-    user.tasks.create(
-      name: name,
-      frequency: frequency,
-      page: Page.find_or_create_by(url: url))
+    user.tasks.create(name: name,
+                      frequency: frequency,
+                      page: Page.find_or_create_by(url: url))
 
     visit '/tasks'
 

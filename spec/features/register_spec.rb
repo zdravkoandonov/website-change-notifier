@@ -10,10 +10,9 @@ feature 'Registration' do
   end
 
   scenario 'Shows welcome message on top if everything is fine' do
-    User.create(
-      username: 'pesho999',
-      email: 'pesho999@pesho999.com',
-      password: '1234567')
+    User.create(username: 'pesho999',
+                email: 'pesho999@pesho999.com',
+                password: '1234567')
 
     visit '/register'
 
@@ -27,10 +26,9 @@ feature 'Registration' do
   end
 
   scenario 'Redirects to /tasks if everything is fine' do
-    User.create(
-      username: 'pesho999',
-      email: 'pesho999@pesho999.com',
-      password: '1234567')
+    User.create(username: 'pesho999',
+                email: 'pesho999@pesho999.com',
+                password: '1234567')
 
     visit '/register'
 
@@ -44,10 +42,9 @@ feature 'Registration' do
   end
 
   scenario 'Shows error message if username is taken' do
-    User.create(
-      username: 'pesho999',
-      email: 'pesho999@pesho999.com',
-      password: '1234567')
+    User.create(username: 'pesho999',
+                email: 'pesho999@pesho999.com',
+                password: '1234567')
 
     visit '/register'
 
@@ -61,10 +58,9 @@ feature 'Registration' do
   end
 
   scenario 'Shows error message if email is already in use' do
-    User.create(
-      username: 'pesho999',
-      email: 'pesho999@pesho999.com',
-      password: '1234567')
+    User.create(username: 'pesho999',
+                email: 'pesho999@pesho999.com',
+                password: '1234567')
 
     visit '/register'
 

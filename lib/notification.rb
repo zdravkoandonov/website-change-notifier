@@ -35,9 +35,8 @@ class Notification
     LogItem.new('slack', webhook_url).save
     LogItem.new('slack', bot_name).save
 
-    notifier = Slack::Notifier.new(
-      webhook_url,
-      username: bot_name)
+    notifier = Slack::Notifier.new(webhook_url,
+                                   username: bot_name)
     notifier.ping(@message)
   end
 end

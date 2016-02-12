@@ -20,12 +20,11 @@ class Notifier
       "#{email}\n#{message}"
     LogItem.new('sidekiq', log_message).save
 
-    notification = Notification.new(
-      message.to_s,
-      platform,
-      email_address: email,
-      webhook_url: user.slack_url,
-      bot_name: user.slack_bot_name)
+    notification = Notification.new(message.to_s,
+                                    platform,
+                                    email_address: email,
+                                    webhook_url: user.slack_url,
+                                    bot_name: user.slack_bot_name)
     notification.send
   end
 end
