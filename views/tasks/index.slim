@@ -2,9 +2,12 @@ h1 Tasks
 
 - @tasks.each do |task|
   p
-    | #{task.id} - #{task.name} - #{task.page.url} - "#{task.selector}" - #{task.frequency} - #{task.last_updated}
+    | #{task.name} - #{task.page.url} - "#{task.selector}" - #{task.frequency} - #{task.last_updated}
+    | &nbsp;|&nbsp;
     a href="/tasks/update/#{task.id}" Update now
+    | &nbsp;|&nbsp;
     a href="/tasks/edit/#{task.id}" Edit
+    | &nbsp;|&nbsp;
     a href="/tasks/delete/#{task.id}" Remove
 
 p
