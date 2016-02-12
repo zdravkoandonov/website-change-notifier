@@ -2,6 +2,14 @@ class Waker
   include Sidekiq::Worker
 
   def perform
+    start_downloaders
+
+    Waker.perform_in(1.minute)
+  end
+
+  private
+
+  def start_downloaders
     now = Time.now
 
     LogItem.new('sidekiq', "#{now} Started waker").save
@@ -14,7 +22,5 @@ class Waker
         Downloader.perform_async(task.id)
       end
     end
-
-    Waker.perform_in(1.minute)
   end
 end
