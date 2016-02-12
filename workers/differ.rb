@@ -10,7 +10,7 @@ class Differ
 
     if diff_line
       LogItem.new('diff', "#{Time.now} There were some differences. Sending notification").save
-      Emailer.perform_async(task.user.email, task.page.url, diff_line, Time.now.to_s)
+      Emailer.perform_async(task.user.email, task.page.url, Time.now.to_s)
     else
       LogItem.new('diff', "#{Time.now} No differences - not sending notification").save
     end
