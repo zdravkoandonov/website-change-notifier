@@ -7,7 +7,7 @@ h1 Edit task
 form action="/tasks/edit/#{@task.id}" method="POST"
   p
     span Url:
-    input type="text" name="url" autofocus=true value="#{@task.page.url}" disabled=true
+    input type="text" name="url" value="#{@task.page.url}" disabled=true
   p
     span Name:
     input type="text" name="name" value="#{@task.name}"
