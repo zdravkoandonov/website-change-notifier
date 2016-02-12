@@ -2,11 +2,10 @@ class Differ
   include Sidekiq::Worker
 
   def perform(task_id, original_download_time_string)
-    diff_line = diff_last_two_files(task_id, Task.find(task_id).selector)
-
-    log_message = "#{Time.now} Started file diff for task #{task_id}\n" \
-      "Diff line: #{diff_line}"
+    log_message = "#{Time.now} Started file diff for task #{task_id}"
     LogItem.new('sidekiq', log_message).save
+
+    diff_line = diff_last_two_files(task_id, Task.find(task_id).selector)
 
     if diff_line
       log_message = "#{Time.now} There were differences. Sending notification"
