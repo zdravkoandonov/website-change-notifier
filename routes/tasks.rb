@@ -11,9 +11,7 @@ end
 post '/tasks/new', authenticate: true do
   url = params[:url]
 
-  if not url.start_with?('http://', 'https://')
-    url.prepend('http://')
-  end
+  url.prepend('http://') unless url.start_with?('http://', 'https://')
 
   page = Page.find_or_create_by(url: url)
 
@@ -21,7 +19,7 @@ post '/tasks/new', authenticate: true do
     name: params[:name],
     selector: params[:selector],
     frequency: params[:frequency],
-    page: page);
+    page: page)
 
   if @task.valid?
     Downloader.perform_async(@task.id)
