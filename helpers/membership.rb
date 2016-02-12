@@ -1,13 +1,13 @@
 module Membership
   def authenticated?
-    session.has_key?(:user_id)
+    session.key?(:user_id)
   end
 
   def login(username, password)
-    if not authenticated?
-      user = User.find_by(username: params[:username])
+    unless authenticated?
+      user = User.find_by(username: username)
 
-      if user and user.password == params[:password]
+      if user and user.password == password
         create_logged_in_session(user.id, user.username)
         user
       end
