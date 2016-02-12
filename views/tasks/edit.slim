@@ -2,12 +2,12 @@ h1 Edit task
 
 - if @task.errors
   - @task.errors.full_messages.each do |message|
-    p #{message}
+    p = message
 
 form action="/tasks/edit/#{@task.id}" method="POST"
   p
     span Url:
-    input type="text" name="url" autofocus="autofocus" value="#{@task.page.url}" disabled="disabled"
+    input type="text" name="url" autofocus=true value="#{@task.page.url}" disabled=true
   p
     span Name:
     input type="text" name="name" value="#{@task.name}"

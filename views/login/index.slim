@@ -1,11 +1,11 @@
 - if @user
   - @user.errors.full_messages.each do |message|
-    p #{message}
+    p = message
 
 form action="/login" method="POST"
   p
     span Username:
-    input type="text" name="username" autofocus="autofocus" value="#{@user ? @user.username : ''}"
+    input type="text" name="username" autofocus=true value="#{@user ? @user.username : ''}"
   p
     span Password:
     input type="password" name="password"

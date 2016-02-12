@@ -2,12 +2,12 @@ h1 New task
 
 - if @task
   - @task.errors.full_messages.each do |message|
-    p #{message}
+    p = message
 
 form action="/tasks/new" method="POST"
   p
     span Url:
-    input type="text" name="url" autofocus="autofocus"
+    input type="text" name="url" autofocus=true
   p
     span Name:
     input type="text" name="name"

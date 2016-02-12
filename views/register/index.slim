@@ -1,11 +1,11 @@
 - if @user
   - @user.errors.full_messages.each do |message|
-    p #{message}
+    p = message
 
 form action="/register" method="POST"
   p
     span Email:
-    input type="text" name="email" autofocus="autofocus" value="#{@user ? @user.email : ''}"
+    input type="text" name="email" autofocus=true value="#{@user ? @user.email : ''}"
   p
     span Username:
     input type="text" name="username" value="#{@user ? @user.username : ''}"

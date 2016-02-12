@@ -9,12 +9,7 @@ form action="/settings" method="POST"
     span Platform:
     select name="platform"
       - @platforms.each do |platform|
-        <option value="#{platform.id}"
-          - if platform == @user.platform
-            | selected="selected"
-          |>
-          = platform.name
-        </option>
+        option value="#{platform.id}" selected=(platform == @user.platform) = platform.name
   p
     span Slack webhook url(if you are using slack):
     input type="text" name="slack_url" value="#{@user.slack_url}"
