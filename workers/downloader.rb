@@ -23,7 +23,7 @@ class Downloader
     task.save
 
     LogItem.new('downloads', "#{now} Downloaded #{task.page.url}").save
-  rescue Exception => exception
+  rescue StandardError => exception
     LogItem.new('downloads', "#{now} #{exception}").save
   end
 end

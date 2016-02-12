@@ -8,9 +8,9 @@ describe DiffMessage do
 
     it 'generates an email message if the platform is :email' do
       message = DiffMessage.new(url, time_string, :email, email_address).to_s
-      expected_message = "From: zdravkoandonov.com notifier <notifier@zdravkoandonov.com>\n" +
-        "To: <#{email_address}>\n" +
-          "Subject: Change detected at #{url} - #{time_string}\n" +
+      expected_message = "From: zdravkoandonov.com notifier <notifier@zdravkoandonov.com>\n" \
+        "To: <#{email_address}>\n" \
+          "Subject: Change detected at #{url} - #{time_string}\n" \
             "There is a change detected at #{url}."
       expect(message).to eq expected_message
     end

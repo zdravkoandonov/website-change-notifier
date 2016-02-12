@@ -1,5 +1,5 @@
 namespace :db do
-  desc "migrate the database"
+  desc 'migrate the database'
   task :migrate do
     require 'bundler'
     Bundler.require

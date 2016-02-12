@@ -20,7 +20,6 @@ class Differ
 
   def latest_two_files(task_id)
     downloaded_files = Dir['download/*'].select do |file_name|
-      LogItem.new('diff', file_name).save
       file_name.start_with?('download/' + task_id.to_s + '-')
     end
 
@@ -36,11 +35,9 @@ class Differ
       old_file = Nokogiri::HTML(File.open(old_file_name, 'r')).css(css_selector)
       new_file = Nokogiri::HTML(File.open(new_file_name, 'r')).css(css_selector)
 
-      zipped = new_file.zip(old_file)
-
-      LogItem.new('diff', "Diff files: #{zipped.inspect}\n#{old_file}\n#{new_file}").save
-
-      zipped.find_index { |new_item, old_item| new_item.to_s != old_item.to_s }
+      new_file.zip(old_file).find_index do |new_item, old_item|
+        new_item.to_s != old_item.to_s
+      end
     end
   end
 end

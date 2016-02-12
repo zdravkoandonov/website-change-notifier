@@ -6,12 +6,11 @@ require './config/environment'
 require 'sidekiq/api'
 require 'net/smtp'
 
-
 # TODO: use cookie secret to invalidate crafted cookies
 enable :sessions
 
 use Rack::Rewrite do
-  r301 %r{^(.+)/$},  '$1'
+  r301 %r{^(.+)/$}, '$1'
 end
 
 use Rack::MethodOverride

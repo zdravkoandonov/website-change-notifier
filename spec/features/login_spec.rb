@@ -3,7 +3,7 @@ require_relative '../feature_helper'
 feature 'Signing in' do
   around(:each) do |example|
     ActiveRecord::Base.connection.transaction do
-      user = User.create(
+      User.create(
         username: 'pesho999',
         email: 'pesho999@pesho999.com',
         password: '1234567')
